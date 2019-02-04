@@ -28,7 +28,7 @@ class List extends Component {
         return (
             <ul className="List-ul">
                 { this.state.cards.map(card =>
-                    <Item idItem={card.id} image={card.imageUrl}/>
+                    <Item idItem={card.id} image={card.foreignNames[2].imageUrl}/>
                 )}
             </ul>
         )

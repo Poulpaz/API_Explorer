@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-//import './Item.css';
+import './Item.css';
+import axios from 'axios';
+
+const url = 'https://api.magicthegathering.io/v1/cards/';
 
 class Item extends Component {
     constructor(props) {
@@ -11,10 +14,21 @@ class Item extends Component {
         };
     }
 
+    getCard() {
+        axios.get(url + this.state.idCard)
+        .then(res => this.setState({
+          card: res.data.card
+        }));
+    }
+
+    componentDidMount() {
+        this.getCard();
+    }
+
     render() {
         return (
-            <button className="itemContent" onClick={this.props.idItem}>
-                {this.state.idCard}
+            <button className="Item-button" onClick={this.props.idItem}>
+                <img src={this.state.imageUrl} aria-hidden alt={this.state.imageUrl}/>
             </button>
         )
     }
