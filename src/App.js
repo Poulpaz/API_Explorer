@@ -4,9 +4,6 @@ import { List } from './List';
 import { SearchBar } from './SearchBar';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
   
   render() {
     return (

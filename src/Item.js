@@ -1,12 +1,23 @@
-//import React, { Component } from 'react';
+import React, { Component } from 'react';
 //import './Item.css';
 
-function Item(props) {
-    return (
-        <button className="itemContent" onClick={props.onClick}>
-            {props.value}
-        </button>
-    )
+class Item extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            card: null,
+            idCard: this.props.idItem,
+            imageUrl: this.props.image
+        };
+    }
+
+    render() {
+        return (
+            <button className="itemContent" onClick={this.props.idItem}>
+                {this.state.idCard}
+            </button>
+        )
+    }
 }
 
 export { Item }

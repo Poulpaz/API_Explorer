@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './List.css';
-//import { Item } from "./Item";
+import { Item } from "./Item";
 import axios from 'axios';
 
 const url = 'https://api.magicthegathering.io/v1/cards';
@@ -28,7 +28,7 @@ class List extends Component {
         return (
             <ul className="List-ul">
                 { this.state.cards.map(card =>
-                    <li>{card.name}</li>
+                    <Item idItem={card.id} image={card.imageUrl}/>
                 )}
             </ul>
         )
