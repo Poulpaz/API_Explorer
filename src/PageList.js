@@ -3,6 +3,7 @@ import './PageList.css';
 import { Item } from "./Item";
 import { SearchBar } from "./SearchBar";
 import axios from 'axios';
+import { Container, Row, Col, Button } from 'reactstrap';
 
 const url = 'https://api.elderscrollslegends.io/v1/cards';
 
@@ -32,11 +33,14 @@ class PageList extends Component {
                     <SearchBar />
                 </header>
                 <body className="App-body">
-                    <ul className="List-ul">
-                        {this.state.cards.map(card =>
+                    <Row>
+                        <Col sm="1"></Col>
+                        <Col sm="10">{this.state.cards.map(card =>
                             <Item idItem={card.id} image={card.imageUrl} />
                         )}
-                    </ul>
+                        </Col>
+                        <Col sm="1"></Col>
+                    </Row>
                 </body>
             </div>
         )
