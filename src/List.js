@@ -13,8 +13,8 @@ class List extends Component {
         };
     }
 
-    abc(){
-        alert('Hello World');
+    abc = (text) => () =>{
+        console.log("text");
       }
 
     fetchCards() {
