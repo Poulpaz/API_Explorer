@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { List } from './List';
-import './App.css';
+import { PageList } from './PageList';
+import './PageList.css';
 
 class SearchBar extends Component {
 
     handleChange(text) {
         console.log(text)
-        new List().abc(text)
       }
 
     render() {
