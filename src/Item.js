@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Item.css';
 import axios from 'axios';
 
-const url = 'https://api.magicthegathering.io/v1/cards/';
+const url = 'https://api.elderscrollslegends.io/v1/cards';
 
 class Item extends Component {
     constructor(props) {
@@ -27,9 +27,9 @@ class Item extends Component {
 
     render() {
         return (
-            <button className="Item-button" onClick={this.props.idItem}>
+            <a href={this.props.idItem}>
                 <img src={this.state.imageUrl} aria-hidden alt={this.state.imageUrl}/>
-            </button>
+            </a>
         )
     }
 }

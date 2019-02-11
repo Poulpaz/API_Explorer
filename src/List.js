@@ -3,7 +3,7 @@ import './List.css';
 import { Item } from "./Item";
 import axios from 'axios';
 
-const url = 'https://api.magicthegathering.io/v1/cards';
+const url = 'https://api.elderscrollslegends.io/v1/cards';
 
 class List extends Component {
     constructor() {
@@ -28,7 +28,7 @@ class List extends Component {
         return (
             <ul className="List-ul">
                 { this.state.cards.map(card =>
-                    <Item idItem={card.id} image={card.foreignNames[2].imageUrl}/>
+                    <Item idItem={card.id} image={card.imageUrl}/>
                 )}
             </ul>
         )
