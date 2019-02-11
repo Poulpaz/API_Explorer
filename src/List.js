@@ -13,11 +13,29 @@ class List extends Component {
         };
     }
 
+    abc(){
+        alert('Hello World');
+      }
+
     fetchCards() {
         axios.get(url)
         .then(res => this.setState({
           cards: res.data.cards
         }));
+    }
+
+    fetchCardsWithSearch(event){
+        console.log("test")
+        this.setState(state => {
+            var updatedList = this.state.cards;
+            updatedList = updatedList.filter(function(item){
+            return item.toLowerCase().search(
+                event.target.value.toLowerCase()) !== -1;
+            });
+            return {
+                cards: updatedList
+            }
+        });
     }
 
     componentDidMount() {

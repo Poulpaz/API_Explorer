@@ -9,7 +9,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <SearchBar/>
+            <img src="https://www.logolynx.com/images/logolynx/5b/5bbc9085e371a4297a194f82a9103630.png" alt="logo" />
+            <SearchBar/>
         </header>
         <body className="App-body">
           <List/>
