@@ -31,7 +31,6 @@ class ItemDetails extends Component {
                 <Link to="/">
                     <button>{this.state.idCard}</button>
                 </Link>
-                <h1>{this.state.card.name}</h1>
             </div>
         )
     }
