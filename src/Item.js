@@ -1,12 +1,23 @@
-//import React, { Component } from 'react';
-//import './Item.css';
+import React, { Component } from 'react';
+import './Item.css';
+import { Link } from 'react-router-dom';
 
-function Item(props) {
-    return (
-        <button className="itemContent" onClick={props.onClick}>
-            {props.value}
-        </button>
-    )
+class Item extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            idCard: this.props.idItem,
+            imageUrl: this.props.image
+        };
+    }
+
+    render() {
+        return (
+            <Link to={'/details/' + this.state.idCard}>
+                <img src={this.state.imageUrl} aria-hidden alt={this.state.imageUrl}/>
+            </Link>
+        )
+    }
 }
 
 export { Item }
