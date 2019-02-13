@@ -32,7 +32,6 @@ class ItemDetails extends Component {
 
     render() {
         return (
-            <div className=".App">
                 <header className="App-header">
                     <Link to="/">
                         <Button color="primary" size="lg" block>Back to Item's List</Button>

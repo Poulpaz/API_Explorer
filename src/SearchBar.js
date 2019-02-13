@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-//import './SearchBar.css';
+import './PageList.css';
 
 class SearchBar extends Component {
 
+    handleChange(text) {
+        this.props.onSearchChange(text)
+      }
+
     render() {
         return (
-            <form>
-                <input type="text" className="SearchBar-input">
-
-                </input>
-                <button formAction="get" className="SearchBar-button">
-                    SEARCH
-                </button>
-            </form>
+            <div id="cover">
+                <input type="text" placeholder="Search" onChange={ (event) => this.handleChange(event.target.value)}/>
+            </div>
         )
     }
 }
