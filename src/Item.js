@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Item.css';
 import { Link } from 'react-router-dom';
+import { Col } from 'reactstrap';
 
 class Item extends Component {
     constructor(props) {
@@ -13,9 +14,11 @@ class Item extends Component {
 
     render() {
         return (
-            <Link to={'/details/' + this.state.idCard}>
-                <img src={this.state.imageUrl} aria-hidden alt={this.state.imageUrl}/>
-            </Link>
+            <Col xs="4">
+                <Link to={'/details/' + this.state.idCard}>
+                    <img src={this.state.imageUrl} aria-hidden alt={this.state.imageUrl} />
+                </Link>
+            </Col>
         )
     }
 }

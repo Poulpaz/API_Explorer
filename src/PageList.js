@@ -3,7 +3,7 @@ import './PageList.css';
 import { Item } from "./Item";
 import { SearchBar } from "./SearchBar";
 import axios from 'axios';
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 
 const url = 'https://api.elderscrollslegends.io/v1/cards';
 
@@ -17,13 +17,13 @@ class PageList extends Component {
     }
 
     handleSearchChange(text) {
-    		this.setState({ search: text });
-    		if (text == ""){
-                this.fetchCards()
-            } else {
-                this.fetchCardsWithSearch(text)
-            }
+        this.setState({ search: text });
+        if (text === "") {
+            this.fetchCards()
+        } else {
+            this.fetchCardsWithSearch(text)
         }
+    }
 
     fetchCards() {
         axios.get(url)
@@ -38,21 +38,21 @@ class PageList extends Component {
     }
 
     fetchCardsWithSearch(text) {
-            axios.get(url)
-                .then(res => {
-                    var updateList = res.data.cards
-                    updateList = updateList.filter((item => {
-                     return item.name.toLowerCase().search(
-                     text.toLowerCase()) !== -1;
-                     }));
-                    this.setState({
-                       cards: []
-                    })
-                    this.setState({
-                        cards: updateList
-                    })
-                });
-        }
+        axios.get(url)
+            .then(res => {
+                var updateList = res.data.cards
+                updateList = updateList.filter((item => {
+                    return item.name.toLowerCase().search(
+                        text.toLowerCase()) !== -1;
+                }));
+                this.setState({
+                    cards: []
+                })
+                this.setState({
+                    cards: updateList
+                })
+            });
+    }
 
     componentWillMount() {
         this.fetchCards();
@@ -66,14 +66,13 @@ class PageList extends Component {
                     <SearchBar search={this.state.search} onSearchChange={(text) => this.handleSearchChange(text)} />
                 </header>
                 <body className="App-body">
-                    <Row>
-                        <Col sm="1"></Col>
-                        <Col sm="10">{this.state.cards.map(card =>
-                            <Item idItem={card.id} image={card.imageUrl} />
-                        )}
-                        </Col>
-                        <Col sm="1"></Col>
-                    </Row>
+                    <Container>
+                        <Row>
+                            {this.state.cards.map(card =>
+                                <Item idItem={card.id} image={card.imageUrl} />
+                            )}
+                        </Row>
+                    </Container>
                 </body>
             </div>
         )
