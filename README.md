@@ -1,3 +1,11 @@
+## Intaller les modules suivants
+
+### `npm install --save react-router-dom`
+### `npm install react react-dom`
+### `npm install axios`
+### `npm install --save bootstrap`
+### `npm install --save reactstrap`
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
