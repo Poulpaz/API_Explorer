@@ -8,11 +8,16 @@ class Item extends Component {
         super(props);
         this.state = {
             idCard: this.props.idItem,
-            imageUrl: this.props.image
+            imageUrl: this.props.image,
+            isFavorite: this.props.isFavorite
         };
     }
 
     handleClick() {
+        var state = this.state.isFavorite ? false : true
+        this.setState({
+            isFavorite: state
+        })
         this.props.onFavoriteChange(this.state.idCard)
     }
 
@@ -26,9 +31,11 @@ class Item extends Component {
                         </Media>
                     </Link>
                 </Row>
-                <Row>
-                    <Button outline color="primary" size="sm" onClick={ () => this.handleClick() } >+ Add to favorite</Button>
-                </Row>
+                { this.props.isFavoriteList ? null : <Row>
+                { this.state.isFavorite ? <Button outline color="primary" size="sm" onClick={ () => this.handleClick() } >- Remove to favorite</Button> :
+                    <Button outline color="primary" size="sm" onClick={ () => this.handleClick() } >+ Add to favorite</Button> }
+                    </Row> 
+                }
             </Col>
         )
     }

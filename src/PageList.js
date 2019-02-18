@@ -30,35 +30,29 @@ class PageList extends Component {
 
     clickFavorite(idCard){
         if(this.isCardFavorite(idCard)){
-            this.addToFavorite(idCard)
-        } else {
             this.deleteToFavorite(idCard)
+        } else {
+            this.addToFavorite(idCard)
         }
     }
 
     isCardFavorite(idCard){
-        return true
+        return this.state.favoriteCards.includes(idCard)
     }
 
-    addToFavorite(params) {
-        console.log("test")
-        console.log(params)
-        axios.get(url + "/" + params)
-            .then(res => {
-                var updateList = this.state.favoriteCards
-                updateList.push(res.data.card)
-                this.setState({
-                favoriteCards: updateList
-            })
-        });
+    addToFavorite(idCard) {
+        var updateList = this.state.favoriteCards
+        updateList.push(idCard)
+        this.setState({
+            favoriteCards: updateList
+        })
     }
 
-    deleteToFavorite(params){
-        console.log("test2")
-    }
-
-    isFavorite(params){
-        
+    deleteToFavorite(idCard){
+        var index = this.state.favoriteCards.indexOf(idCard);
+        if (index > -1) {
+            this.state.favoriteCards.splice(index, 1);
+        }
     }
 
     handleSearchChange(text) {
@@ -132,7 +126,7 @@ class PageList extends Component {
                                 <Row>
                                     {this.state.cards.map(card =>
                                         <Row>
-                                            <Item idItem={card.id} image={card.imageUrl} onFavoriteChange={(idCard) => this.clickFavorite(idCard)}/>
+                                            <Item idItem={card.id} image={card.imageUrl} onFavoriteChange={(idCard) => this.clickFavorite(idCard)} isFavoriteList={false} isFavorite={this.isCardFavorite(card.id)}/>
                                         </Row>
                                     )}
                                 </Row>
@@ -142,8 +136,8 @@ class PageList extends Component {
                         <TabPane tabId="2">
                             <Container>
                                 <Row>
-                                    {this.state.favoriteCards.map(favoriteCard =>
-                                        <Item idItem={favoriteCard.id} image={favoriteCard.imageUrl}  />
+                                    {this.state.cards.filter( card => this.state.favoriteCards.includes(card.id)).map(favoriteCard =>
+                                        <Item idItem={favoriteCard.id} image={favoriteCard.imageUrl} isFavoriteList={true} />
                                     )}
                                 </Row>
                             </Container>
