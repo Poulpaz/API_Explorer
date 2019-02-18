@@ -4,7 +4,7 @@ import { Item } from "./Item";
 import { SearchBar } from "./SearchBar";
 import axios from 'axios';
 import classnames from 'classnames';
-import { Container, Row, TabContent, TabPane, Nav, NavItem, NavLink, Button, Card } from 'reactstrap';
+import { Container, Row, TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 
 const url = 'https://api.elderscrollslegends.io/v1/cards';
 
@@ -28,8 +28,37 @@ class PageList extends Component {
         }
     }
 
-    addToFavorite(params) {
+    clickFavorite(idCard){
+        if(this.isCardFavorite(idCard)){
+            this.addToFavorite(idCard)
+        } else {
+            this.deleteToFavorite(idCard)
+        }
+    }
 
+    isCardFavorite(idCard){
+        return true
+    }
+
+    addToFavorite(params) {
+        console.log("test")
+        console.log(params)
+        axios.get(url + "/" + params)
+            .then(res => {
+                var updateList = this.state.favoriteCards
+                updateList.push(res.data.card)
+                this.setState({
+                favoriteCards: updateList
+            })
+        });
+    }
+
+    deleteToFavorite(params){
+        console.log("test2")
+    }
+
+    isFavorite(params){
+        
     }
 
     handleSearchChange(text) {
@@ -103,8 +132,7 @@ class PageList extends Component {
                                 <Row>
                                     {this.state.cards.map(card =>
                                         <Row>
-                                            <Item idItem={card.id} image={card.imageUrl} />
-                                            <Button outline color="primary" size="sm">+ Add to favorite</Button>
+                                            <Item idItem={card.id} image={card.imageUrl} onFavoriteChange={(idCard) => this.clickFavorite(idCard)}/>
                                         </Row>
                                     )}
                                 </Row>
@@ -115,7 +143,7 @@ class PageList extends Component {
                             <Container>
                                 <Row>
                                     {this.state.favoriteCards.map(favoriteCard =>
-                                        <Item idItem={favoriteCard.id} image={favoriteCard.imageUrl} />
+                                        <Item idItem={favoriteCard.id} image={favoriteCard.imageUrl}  />
                                     )}
                                 </Row>
                             </Container>

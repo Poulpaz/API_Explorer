@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Item.css';
 import { Link } from 'react-router-dom';
-import { Col, Media, Button } from 'reactstrap';
+import { Col, Media, Button, Row } from 'reactstrap';
 
 class Item extends Component {
     constructor(props) {
@@ -12,14 +12,23 @@ class Item extends Component {
         };
     }
 
+    handleClick() {
+        this.props.onFavoriteChange(this.state.idCard)
+    }
+
     render() {
         return (
-            <Col sm="2">
-                <Link to={'/details/' + this.state.idCard}>
-                    <Media>
-                        <Media src={this.state.imageUrl} width="90%" />
-                    </Media>
-                </Link>
+            <Col sm="5" align="center">
+                <Row>
+                    <Link to={'/details/' + this.state.idCard}>
+                        <Media>
+                            <Media src={this.state.imageUrl} width="90%" />
+                        </Media>
+                    </Link>
+                </Row>
+                <Row>
+                    <Button outline color="primary" size="sm" onClick={ () => this.handleClick() } >+ Add to favorite</Button>
+                </Row>
             </Col>
         )
     }
