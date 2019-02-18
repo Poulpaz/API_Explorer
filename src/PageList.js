@@ -3,17 +3,33 @@ import './PageList.css';
 import { Item } from "./Item";
 import { SearchBar } from "./SearchBar";
 import axios from 'axios';
-import { Container, Row } from 'reactstrap';
+import classnames from 'classnames';
+import { Container, Row, TabContent, TabPane, Nav, NavItem, NavLink, Button, Card } from 'reactstrap';
 
 const url = 'https://api.elderscrollslegends.io/v1/cards';
 
 class PageList extends Component {
     constructor() {
         super();
+        this.toggle = this.toggle.bind(this);
         this.state = {
             cards: [],
-            search: ''
+            favoriteCards: [],
+            search: '',
+            activeTab: '1'
         };
+    }
+
+    toggle(tab) {
+        if (this.state.activeTab !== tab) {
+            this.setState({
+                activeTab: tab
+            });
+        }
+    }
+
+    addToFavorite(params) {
+
     }
 
     handleSearchChange(text) {
@@ -66,13 +82,45 @@ class PageList extends Component {
                     <SearchBar search={this.state.search} onSearchChange={(text) => this.handleSearchChange(text)} />
                 </header>
                 <body className="App-body">
-                    <Container>
-                        <Row>
-                            {this.state.cards.map(card =>
-                                <Item idItem={card.id} image={card.imageUrl} />
-                            )}
-                        </Row>
-                    </Container>
+                    <Nav tabs>
+                        <NavItem>
+                            <NavLink className={classnames({ active: this.state.activeTab === '1' })}
+                                onClick={() => { this.toggle('1'); }}>
+                                Liste des cartes
+                        </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink className={classnames({ active: this.state.activeTab === '2' })}
+                                onClick={() => { this.toggle('2'); }}>
+                                Favoris
+                        </NavLink>
+                        </NavItem>
+                    </Nav>
+                    <TabContent activeTab={this.state.activeTab}>
+                        <TabPane tabId="1">
+                            <Container>
+                                <h1><br /></h1>
+                                <Row>
+                                    {this.state.cards.map(card =>
+                                        <Row>
+                                            <Item idItem={card.id} image={card.imageUrl} />
+                                            <Button outline color="primary" size="sm">+ Add to favorite</Button>
+                                        </Row>
+                                    )}
+                                </Row>
+                                <h1><br /></h1>
+                            </Container>
+                        </TabPane>
+                        <TabPane tabId="2">
+                            <Container>
+                                <Row>
+                                    {this.state.favoriteCards.map(favoriteCard =>
+                                        <Item idItem={favoriteCard.id} image={favoriteCard.imageUrl} />
+                                    )}
+                                </Row>
+                            </Container>
+                        </TabPane>
+                    </TabContent>
                 </body>
             </div>
         )

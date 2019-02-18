@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Item.css';
 import { Link } from 'react-router-dom';
-import { Col } from 'reactstrap';
+import { Col, Media, Button } from 'reactstrap';
 
 class Item extends Component {
     constructor(props) {
@@ -14,9 +14,11 @@ class Item extends Component {
 
     render() {
         return (
-            <Col xs="4">
+            <Col sm="2">
                 <Link to={'/details/' + this.state.idCard}>
-                    <img src={this.state.imageUrl} aria-hidden alt={this.state.imageUrl} width="90%"/>
+                    <Media>
+                        <Media src={this.state.imageUrl} width="90%" />
+                    </Media>
                 </Link>
             </Col>
         )

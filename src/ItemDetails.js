@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './PageList.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Card, CardText, CardBody, CardTitle, Button, Container, Row, Col, Badge } from 'reactstrap';
+import { Card, CardText, CardBody, CardTitle, Button, Container, Row, Col, Badge, Media } from 'reactstrap';
 
 const url = 'https://api.elderscrollslegends.io/v1/cards/';
 
@@ -34,7 +34,9 @@ class ItemDetails extends Component {
         return (
             <div>
                 <div className="App-header">
-                    <img src="https://www.logolynx.com/images/logolynx/5b/5bbc9085e371a4297a194f82a9103630.png" alt="logo" />
+                    <Media>
+                        <Media src="https://www.logolynx.com/images/logolynx/5b/5bbc9085e371a4297a194f82a9103630.png" />
+                    </Media>
                 </div>
                 <div>
                     <Link to="/">
@@ -52,7 +54,9 @@ class ItemDetails extends Component {
                                 <Container>
                                     <Row>
                                         <Col>
-                                            <img src={this.state.card.imageUrl} alt="Card imoage cap" width="18%" />
+                                            <Media middle>
+                                                <Media src={this.state.card.imageUrl} width="18%"/>
+                                            </Media>
                                         </Col>
                                     </Row>
                                     <Row>
@@ -114,7 +118,7 @@ class ItemDetails extends Component {
                                     </Row>
                                     <Row>
                                         <Col>
-                                        <h5 className="text-muted">{this.state.card.text}</h5>
+                                            <h5 className="text-muted">{this.state.card.text}</h5>
                                         </Col>
                                     </Row>
                                 </Container>
