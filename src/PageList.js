@@ -28,15 +28,15 @@ class PageList extends Component {
         }
     }
 
-    clickFavorite(idCard){
-        if(this.isCardFavorite(idCard)){
+    clickFavorite(idCard) {
+        if (this.isCardFavorite(idCard)) {
             this.addToFavorite(idCard)
         } else {
             this.deleteToFavorite(idCard)
         }
     }
 
-    isCardFavorite(idCard){
+    isCardFavorite(idCard) {
         return true
     }
 
@@ -48,17 +48,17 @@ class PageList extends Component {
                 var updateList = this.state.favoriteCards
                 updateList.push(res.data.card)
                 this.setState({
-                favoriteCards: updateList
-            })
-        });
+                    favoriteCards: updateList
+                })
+            });
     }
 
-    deleteToFavorite(params){
+    deleteToFavorite(params) {
         console.log("test2")
     }
 
-    isFavorite(params){
-        
+    isFavorite(params) {
+
     }
 
     handleSearchChange(text) {
@@ -131,9 +131,7 @@ class PageList extends Component {
                                 <h1><br /></h1>
                                 <Row>
                                     {this.state.cards.map(card =>
-                                        <Row>
-                                            <Item idItem={card.id} image={card.imageUrl} onFavoriteChange={(idCard) => this.clickFavorite(idCard)}/>
-                                        </Row>
+                                        <Item idItem={card.id} image={card.imageUrl} onFavoriteChange={(idCard) => this.clickFavorite(idCard)} />
                                     )}
                                 </Row>
                                 <h1><br /></h1>
@@ -143,7 +141,7 @@ class PageList extends Component {
                             <Container>
                                 <Row>
                                     {this.state.favoriteCards.map(favoriteCard =>
-                                        <Item idItem={favoriteCard.id} image={favoriteCard.imageUrl}  />
+                                        <Item idItem={favoriteCard.id} image={favoriteCard.imageUrl} />
                                     )}
                                 </Row>
                             </Container>
