@@ -125,9 +125,7 @@ class PageList extends Component {
                                 <h1><br /></h1>
                                 <Row>
                                     {this.state.cards.map(card =>
-                                        <Row>
-                                            <Item idItem={card.id} image={card.imageUrl} onFavoriteChange={(idCard) => this.clickFavorite(idCard)} isFavoriteList={false} isFavorite={this.isCardFavorite(card.id)}/>
-                                        </Row>
+                                        <Item idItem={card.id} image={card.imageUrl} onFavoriteChange={(idCard) => this.clickFavorite(idCard)} isFavoriteList={false} isFavorite={this.isCardFavorite(card.id)}/>
                                     )}
                                 </Row>
                                 <h1><br /></h1>
