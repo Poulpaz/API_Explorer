@@ -16,7 +16,7 @@ class Item extends Component {
         return (
             <Col xs="4">
                 <Link to={'/details/' + this.state.idCard}>
-                    <img src={this.state.imageUrl} aria-hidden alt={this.state.imageUrl} />
+                    <img src={this.state.imageUrl} aria-hidden alt={this.state.imageUrl} width="90%"/>
                 </Link>
             </Col>
         )

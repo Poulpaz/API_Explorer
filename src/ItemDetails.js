@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './PageList.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Card, CardText, CardBody, CardTitle, Button, Container, Row, Col, } from 'reactstrap';
+import { Card, CardText, CardBody, CardTitle, Button, Container, Row, Col, Badge } from 'reactstrap';
 
 const url = 'https://api.elderscrollslegends.io/v1/cards/';
 
@@ -26,7 +26,7 @@ class ItemDetails extends Component {
             }));
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getCard();
     }
 
@@ -45,7 +45,7 @@ class ItemDetails extends Component {
                     <Card align="center">
                         <CardTitle>
                             <h1><br /></h1>
-                            <h1>{this.state.card.name}</h1>
+                            <h1 className="text-muted">{this.state.card.name}</h1>
                         </CardTitle>
                         <CardBody>
                             <CardText>
@@ -60,52 +60,52 @@ class ItemDetails extends Component {
                                     </Row>
                                     <Row>
                                         <Col>
-                                            <h5>Rarity</h5>
+                                            <h5 className="text-muted">Rarity</h5>
                                         </Col>
                                         <Col>
-                                            <h5>Type</h5>
+                                            <h5 className="text-muted">Type</h5>
                                         </Col>
                                         <Col>
-                                            <h5>Subtype(s)</h5>
+                                            <h5 className="text-muted">Subtype(s)</h5>
                                         </Col>
                                         <Col>
-                                            <h5>Mana Cost</h5>
+                                            <h5 className="text-muted">Mana Cost</h5>
                                         </Col>
                                         <Col>
-                                            <h5>Power</h5>
+                                            <h5 className="text-muted">Power</h5>
                                         </Col>
                                         <Col>
-                                            <h5>Health</h5>
+                                            <h5 className="text-muted">Health</h5>
                                         </Col>
                                         <Col>
-                                            <h5>Attributes</h5>
+                                            <h5 className="text-muted">Attributes</h5>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col>
-                                            {this.state.card.rarity}
+                                            <Badge color="primary" pill>{this.state.card.rarity}</Badge>
                                         </Col>
                                         <Col>
-                                            {this.state.card.type}
+                                            <Badge color="primary" pill>{this.state.card.type}</Badge>
                                         </Col>
                                         <Col>
                                             <ul className="List-ul">{this.state.subtypes ? this.state.subtypes.map(item => (
-                                                <li key={item}>{item}</li>
+                                                <Badge color="primary" pill><li key={item}>{item}</li></Badge>
                                             )) : "N/A"}</ul>
                                         </Col>
                                         <Col>
-                                            {this.state.card.cost}
+                                            <Badge color="primary" pill>{this.state.card.cost}</Badge>
                                         </Col>
                                         <Col>
-                                            {this.state.card.power ? this.state.card.power : "N/A"}
+                                            <Badge color="primary" pill>{this.state.card.power ? this.state.card.power : "N/A"}</Badge>
                                         </Col>
                                         <Col>
-                                            {this.state.card.health ? this.state.card.health
-                                                : "N/A"}
+                                            <Badge color="primary" pill>{this.state.card.health ? this.state.card.health
+                                                : "N/A"}</Badge>
                                         </Col>
                                         <Col>
                                             <ul className="List-ul">{this.state.attributes ? this.state.attributes.map(item => (
-                                                <li key={item}>{item}</li>
+                                                <Badge color="primary" pill><li key={item}>{item}</li></Badge>
                                             )) : null}</ul>
                                         </Col>
                                     </Row>
@@ -114,7 +114,7 @@ class ItemDetails extends Component {
                                     </Row>
                                     <Row>
                                         <Col>
-                                            {this.state.card.text}
+                                        <h5 className="text-muted">{this.state.card.text}</h5>
                                         </Col>
                                     </Row>
                                 </Container>

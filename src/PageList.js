@@ -54,7 +54,7 @@ class PageList extends Component {
             });
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.fetchCards();
     }
 
