@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Item.css';
 import { Link } from 'react-router-dom';
-import { Col, Media, Button, Row } from 'reactstrap';
+import { Col, Media, Button, Container } from 'reactstrap';
 
 class Item extends Component {
     constructor(props) {
@@ -23,7 +23,7 @@ class Item extends Component {
 
     render() {
         return (
-            <Col sm="5" align="center">
+            <Col sm="3">
                 <Row>
                     <Link to={'/details/' + this.state.idCard}>
                         <Media>
@@ -34,7 +34,7 @@ class Item extends Component {
                 { this.props.isFavoriteList ? null : <Row>
                 { this.state.isFavorite ? <Button outline color="primary" size="sm" onClick={ () => this.handleClick() } >- Remove to favorite</Button> :
                     <Button outline color="primary" size="sm" onClick={ () => this.handleClick() } >+ Add to favorite</Button> }
-                    </Row> 
+                    </Row>
                 }
             </Col>
         )
